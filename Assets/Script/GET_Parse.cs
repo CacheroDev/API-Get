@@ -29,7 +29,7 @@ public class GET_Parse : MonoBehaviour
 
         using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
-            yield return request.SendWebRequest();
+            yield return request.SendWebRequest();                      //1. Transmission
 
             if (request.result != UnityWebRequest.Result.Success)
             {
@@ -37,10 +37,10 @@ public class GET_Parse : MonoBehaviour
                 yield break;
             }
 
-            string json = request.downloadHandler.text;
+            string json = request.downloadHandler.text;                 //2. Decoding
             Debug.Log(json);
 
-            ToDo todo = JsonUtility.FromJson<ToDo>(json);
+            ToDo todo = JsonUtility.FromJson<ToDo>(json);               //3. Deserialization
 
             id = todo.id;
             userId = todo.userId;
