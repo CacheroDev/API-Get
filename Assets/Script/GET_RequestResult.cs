@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GETrequestResult : MonoBehaviour
+public class GET_RequestResult : MonoBehaviour
 {
 
     void Start()
@@ -15,17 +15,17 @@ public class GETrequestResult : MonoBehaviour
     {
         string url = "https://jsonplaceholder.typicode.com/todos/1";
 
-        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        using (UnityWebRequest request = UnityWebRequest.Get(url))      
         {
             yield return request.SendWebRequest();
             
-            if (request.result != UnityWebRequest.Result.Success)
+            if (request.result != UnityWebRequest.Result.Success)       //Check request result if successful
             {
                 Debug.LogError($"{request.result} | {request.responseCode} | {request.error}");
                 yield break;
             }
             
-            string json = request.downloadHandler.text;
+            string json = request.downloadHandler.text;                 
             Debug.Log(json);
         }
     }
