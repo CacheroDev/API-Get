@@ -18,7 +18,6 @@ public class TodosWrapper
     public List<ToDos> items;
 }
 
-
 public class API_GetList : MonoBehaviour
 {
     [SerializeField] int userId;
@@ -46,26 +45,13 @@ public class API_GetList : MonoBehaviour
             }
 
             string json = request.downloadHandler.text;
-            Debug.Log(json);
-
             string wrappedJson = "{\"items\":" + json + "}";
-            Debug.Log(wrappedJson);
 
             TodosWrapper wrapper = JsonUtility.FromJson<TodosWrapper>(wrappedJson);
-            //Debug.Log(wrapper);
             ToDos todos = wrapper.items[0];
 
-            //Debug.Log(todos);
-            
             userId = todos.userId;
             Debug.Log(userId);
-
-            //id = todos.id;
-            //title = todos.title;
-            //completed = todos.completed;
-
-
         }
-        
     }
 }
